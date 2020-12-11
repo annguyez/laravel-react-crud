@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { ListGroup,Table, ListGroupItem } from 'reactstrap';
+import { ListGroup,Table,Button, ListGroupItem } from 'reactstrap';
 
 
 function StudentList(){
@@ -14,39 +14,32 @@ function StudentList(){
         }
         fetchListStudent();
     }, [])
-    return (
-        <div>
-        
+
+    return ( 
         <Table dark>
-      <thead>
-        <tr>
-          <th>#</th>
-          <th>Name</th>
-          <th>Age</th>
-          <th>Description</th>
-        </tr>
-      </thead>
-      <tbody>
-      {student.map(st=> (
-        <tr>
-          <th scope="row" key={st.id}>{st.id}</th>
-          <td>{st.name}</td>
-          <td>{st.age}</td>
-          <td>{st.description}</td>
-        </tr>
-      )
-        )}
-        </tbody>
+            <thead>
+                <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Description</th>
+                <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+            {student.map(st=> (
+                <tr>
+                <th scope="row" key={st.id}>{st.id}</th>
+                <td>{st.name}</td>
+                <td>{st.age}</td>
+                <td>{st.description}</td>
+                <td><Button>Edit</Button></td>
+                </tr>
+            )
+                )}
+                </tbody>
         </Table>
-        </div>
-
-
-                    
-
-
-
-
-
+        
     )
   return (
         <>

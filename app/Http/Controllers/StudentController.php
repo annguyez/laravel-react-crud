@@ -73,6 +73,10 @@ class StudentController extends Controller
     public function edit(Student $student)
     {
         //
+        
+
+        
+
     }
 
     /**
@@ -85,6 +89,19 @@ class StudentController extends Controller
     public function update(Request $request, Student $student)
     {
         //
+
+        $request->validation(
+            [
+                'name' => 'required',
+                'age' => 'required',
+                'description' => 'required'
+            ]);
+        //$data = $request->find($students);
+        $student->name = $request->name();
+        $student->age = $request->age();
+        $student->description = $request->description();
+                
+
     }
 
     /**

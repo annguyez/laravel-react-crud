@@ -17,7 +17,6 @@ const ListStudent2 = props => {
         <ListGroup>
             {st.map(post=> (
                 <ListGroupItem key={st.id}>{st.name}</ListGroupItem>
-                
                 )
             )}
         </ListGroup>
