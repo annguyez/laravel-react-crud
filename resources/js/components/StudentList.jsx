@@ -39,12 +39,6 @@ function StudentList(){
                 )}
                 </tbody>
         </Table>
-        
-    )
-  return (
-        <>
-
-        </>
     )
 }
 export default StudentList;
