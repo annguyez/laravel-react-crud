@@ -58,9 +58,10 @@ class StudentController extends Controller
      * @param  \App\Models\Student  $student
      * @return \Illuminate\Http\Response
      */
-    public function show(Student $student)
+    public function show($id)
     {
         //
+        $student = Student::find($id);
         return $student;
     }
 
@@ -86,7 +87,7 @@ class StudentController extends Controller
      * @param  \App\Models\Student  $student
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Student $student)
+    public function update(Request $request, $id)
     {
         //
 
@@ -97,11 +98,15 @@ class StudentController extends Controller
                 'description' => 'required'
             ]);
         //$data = $request->find($students);
-        $student->name = $request->name();
-        $student->age = $request->age();
-        $student->description = $request->description();
-                
-
+        $student = Student::find($id);
+        $student->name = $request->name;
+        $student->age = $request->age;
+        $student->description = $request->description;
+        $student.save();
+        return response()->json([
+            'mess'=>'Updated',
+            'student'=> $student
+        ]);  
     }
 
     /**
@@ -113,5 +118,9 @@ class StudentController extends Controller
     public function destroy(Student $student)
     {
         //
+        $student->delete();
+        return response()->json([
+            'mess'=>'Deleted'
+        ]);  
     }
 }

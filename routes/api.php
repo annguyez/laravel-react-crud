@@ -19,14 +19,14 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 
-Route::get('/students', 'StudentController@index')->name('students.all');
+Route::get('/students', 'StudentController@index')->name('all');
 
-Route::post('/students', 'StudentController@store')->name('students.store');
+Route::post('/students', 'StudentController@store')->name('store');
 
-Route::get('/students/{student}', 'StudentController@show')->name('students.show');
+Route::get('/students/{id}', 'StudentController@show')->name('show');
 
-Route::put('/students/{student}', 'StudentController@update')->name('students.update');
+Route::put('/students/{id}', 'StudentController@update')->name('update');
 
-Route::delete('/students/{student}', 'StudentController@destroy')->name('students.destroy');
+Route::delete('/students/{student}', 'StudentController@destroy')->name('destroy');
 
 

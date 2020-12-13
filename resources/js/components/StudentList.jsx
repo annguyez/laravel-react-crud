@@ -1,15 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { ListGroup,Table,Button, ListGroupItem } from 'reactstrap';
+import api from '../api';
 
 
 function StudentList(){
     const [student, setStudent] = useState([])
     useEffect(() => {
+        api.getAll().then
         async function fetchListStudent(){
             const requestUrl = `http://127.0.0.1:8000/api/students`;
             const respone = await fetch(requestUrl);
             const responeJson = await respone.json();
             console.log(responeJson);
+            
             setStudent(responeJson);
         }
         fetchListStudent();
