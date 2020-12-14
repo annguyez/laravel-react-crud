@@ -6,7 +6,7 @@ import api from '../api';
 function StudentList(){
     const [student, setStudent] = useState([])
     useEffect(() => {
-        api.getAll().then
+        //api.getAll().then
         async function fetchListStudent(){
             const requestUrl = `http://127.0.0.1:8000/api/students`;
             const respone = await fetch(requestUrl);

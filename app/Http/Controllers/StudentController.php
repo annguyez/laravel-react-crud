@@ -90,19 +90,23 @@ class StudentController extends Controller
     public function update(Request $request, $id)
     {
         //
-
-        $request->validation(
+        $request->validate(
             [
                 'name' => 'required',
                 'age' => 'required',
                 'description' => 'required'
             ]);
+
         //$data = $request->find($students);
         $student = Student::find($id);
-        $student->name = $request->name;
-        $student->age = $request->age;
-        $student->description = $request->description;
-        $student.save();
+
+        $student->name = $request->get('name');
+        $student->age = $request->get('age');
+        $student->description = $request->get('description');
+        $student->save();
+        
+
+        // $student->update($request->all());
         return response()->json([
             'mess'=>'Updated',
             'student'=> $student

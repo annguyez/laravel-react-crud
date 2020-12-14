@@ -40,19 +40,7 @@ function List(){
         </tbody>
         </Table>
         
-
-
-                    
-
-
-
-
-
     )
-  return (
-        <>
 
-        </>
-    )
 }
 export default List;
