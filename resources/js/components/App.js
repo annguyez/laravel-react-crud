@@ -6,6 +6,7 @@ import Header from './Header';
 import StudentList from './StudentList';
 import NotFound from './NotFound';
 import Add from './Add';
+import Edit from './Edit';
 //import { createBrowserHistory } from "history";
 
 
@@ -34,6 +35,7 @@ function App() {
                 
                 <Route path="/header" component={Header} />
                 <Route path="/add" component={Add} />
+                <Route path="/edit/:id" component={Edit} />
                 <Route component={NotFound}/>
             </Switch>
         </BrowserRouter>          

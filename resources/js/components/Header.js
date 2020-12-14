@@ -1,4 +1,4 @@
-import {Link} from 'react-router-dom'
+import {Link, useParams} from 'react-router-dom'
 import React, { useEffect, useState } from 'react';
 import { ListGroup,Table, ListGroupItem, Button } from 'reactstrap';
 import {PageHeader} from 'antd';
@@ -7,6 +7,8 @@ import axios from 'axios';
 
 
 function Header() {
+    const params = useParams();
+    console.log('params ', params);
     const [student, setStudent] = useState([]);
     useEffect(() => {
         //api.getAll().then
@@ -26,7 +28,7 @@ function Header() {
         axios.delete('http://localhost:8000/api/students/' + id)
         .then((res) => {
             console.log('deleted!')
-            console.logo(mess);
+            console.logo(res);
         }).catch((error) => {
             console.log(error)
         })
@@ -69,7 +71,6 @@ function Header() {
                        <Button color="warning" variant="info">Edit</Button>
                     </Link>
                     <Button color="danger" onClick={()=>removeStudent(st.id)} size="sm" variant="danger">Delete</Button>
-                
                 </td>
                 </tr>
             )

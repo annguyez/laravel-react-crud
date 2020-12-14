@@ -1,17 +1,55 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import api from '../api';
+import ReactDOM from 'react-dom';
+import { BrowserRouter, Link, Route, Router, Switch } from 'react-router-dom'
+import 'antd/dist/antd.css';
+import Header from './Header';
 
-export const Edit = () => {
+ function Edit(props){
 
     const [name, setname] = useState(null);
     const [age, setage] = useState(null);
     const [description, setdescription] = useState(null);
+    const [selectedStudent, setSelectedStudent] = useState(
+        {
+            id: '',
+            name: '',
+            age: '',
+            description: ''
+        }
+    );
+    const currentId = props.match.params.id;
 
     const loadStudent = async()=>{
         const st = await api.getStudent(1);
         setname(set.name);
     };
     loadStudent();
+    const [student, setStudent] = useState([]);
+    useEffect(() => {
+        console.log(currentId);
+        const id = currentId;
+
+        async function fetchListStudent(){
+            const requestUrl = `http://127.0.0.1:8000/api/students`;
+            const respone = await fetch(requestUrl);
+            const responeJson = await respone.json();
+            //
+            console.log(responeJson);
+            
+            setStudent(responeJson);
+        }
+        fetchListStudent();
+        console.log(student);
+
+        const selectedStudent = student.find((student) => 
+            student.id === id.toString()
+        );
+        setSelectedStudent(selectedStudent);
+        console.log(selectedStudent);
+    }, []); 
+
+
 
 
     return (
@@ -56,7 +94,7 @@ export const Edit = () => {
               />
             </div>
 
-            <button onClick={handleSubmit} className="btn btn-success">
+            <button className="btn btn-success">
               Edit
             </button>
             <Link to="/">Back</Link>
@@ -64,3 +102,4 @@ export const Edit = () => {
         </div>
     )
 }
+export default Edit;

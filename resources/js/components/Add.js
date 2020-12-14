@@ -1,6 +1,6 @@
 import { Switch } from 'antd';
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import api from '../api';
 
 function Add() {
@@ -18,16 +18,18 @@ function Add() {
     // }
     const [name, setname] = useState(null);
     const [age, setage] = useState(null);
+    const history = useHistory();
     const [description, setdescription] = useState(null);
-    const handleSubmit = async ()=>{
+    function handleSubmit(){
       console.log("DSFSĐFS");
       const student = {name, age, description};
-      await api.addStudent(student);
+      api.addStudent(student);
+      return history.push("/");
     }
 
     return (
         <div>
-            <form> 
+            <form onSubmit={handleSubmit}> 
             <div className="form-group">
               <label htmlFor="name">Name</label>
               <input
@@ -66,7 +68,7 @@ function Add() {
               />
             </div>
 
-            <button onClick={handleSubmit} className="btn btn-success">
+            <button className="btn btn-success">
               Submit
             </button>
             <Link to="/">Back</Link>
