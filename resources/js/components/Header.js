@@ -1,4 +1,4 @@
-import {Link, useParams} from 'react-router-dom'
+import {Link, useHistory, useParams} from 'react-router-dom'
 import React, { useEffect, useState } from 'react';
 import { ListGroup,Table, ListGroupItem, Button } from 'reactstrap';
 import {PageHeader} from 'antd';
@@ -7,9 +7,8 @@ import axios from 'axios';
 
 
 function Header() {
-    const params = useParams();
-    console.log('params ', params);
     const [student, setStudent] = useState([]);
+    const history = useHistory();
     useEffect(() => {
         //api.getAll().then
         async function fetchListStudent(){
@@ -27,8 +26,8 @@ function Header() {
     function removeStudent(id) {
         axios.delete('http://localhost:8000/api/students/' + id)
         .then((res) => {
-            console.log('deleted!')
-            console.logo(res);
+            alert('deleted!');
+            window.location.reload();
         }).catch((error) => {
             console.log(error)
         })
@@ -53,7 +52,7 @@ function Header() {
             <Table dark>
             <thead>
                 <tr>
-                <th>#</th>
+                <th>ID</th>
                 <th>Name</th>
                 <th>Age</th>
                 <th>Description</th>
@@ -62,15 +61,16 @@ function Header() {
             </thead>
             <tbody>
             {student.map(st=> (
-                <tr>
-                <th scope="row" key={st.id}>{st.id}</th>
+                <tr key={st.id}>
+                <th scope="row" >{st.id}</th>
                 <td>{st.name}</td>
                 <td>{st.age}</td>
                 <td>{st.description}</td>
-                <td> <Link className="edit-link" to={`/edit/${st.id}`}>
+                <td> 
+                    <Link className="edit-link" to={`/edit/${st.id}`}>
                        <Button color="warning" variant="info">Edit</Button>
                     </Link>
-                    <Button color="danger" onClick={()=>removeStudent(st.id)} size="sm" variant="danger">Delete</Button>
+                    <Button color="danger" onClick={()=>removeStudent(st.id)} size="xl" variant="danger">Delete</Button>
                 </td>
                 </tr>
             )

@@ -29,6 +29,8 @@ function Add() {
 
     return (
         <div>
+
+
             <form onSubmit={handleSubmit}> 
             <div className="form-group">
               <label htmlFor="name">Name</label>
@@ -37,7 +39,7 @@ function Add() {
                 className="form-control"
                 id="name"
                 required
-                value={name}
+                placeholder="Enter the name"
                 onChange={e => setname(e.target.value)}
                 name="name"
               />
@@ -47,9 +49,9 @@ function Add() {
               <input
                 type="number"
                 className="form-control"
+                placeholder="Enter the age"
                 id="age"
                 required
-                value={age}
                 onChange={e => setage(e.target.value)}
                 name="age"
               />
@@ -60,9 +62,9 @@ function Add() {
               <input
                 type="text"
                 className="form-control"
+                placeholder="Enter the description"
                 id="description"
                 required
-                value={description}
                 onChange={e => setdescription(e.target.value)}
                 name="description"
               />
@@ -71,7 +73,11 @@ function Add() {
             <button className="btn btn-success">
               Submit
             </button>
-            <Link to="/">Back</Link>
+            <Link color="primary" to="/">
+            <button className="btn btn-dark">
+            Back
+            </button>
+            </Link>
             </form>
           </div>
     )
